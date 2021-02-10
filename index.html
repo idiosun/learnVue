@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World</title>
+  <script src="http://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    // Vue.createApp( {
+    //   data() {
+    //     return {
+    //       content: 'Hello World'
+    //     };
+    //   },
+    //   methods: {
+    //     handle() {
+    //       const newContent = this.content.split( "" ).reverse().join( "" );
+    //       this.content = newContent;
+    //     }
+    //   },
+    //   template: `
+    //   <div>
+    //     {{content}}
+    //     <button v-on:click="handle">反转</button>
+    //     </div>
+    //     `
+    // } ).mount( '#root' );
+
+
+    // Vue.createApp( {
+    //   data() {
+    //     return {
+    //       show: true,
+    //     };
+    //   },
+    //   methods: {
+    //     handle() {
+    //       this.show = !this.show;
+    //     }
+    //   },
+    //   template: `
+    //   <div>
+    //     <span v-if="show">hello world</span>
+    //     <button v-on:click="handle">显示/隐藏</button>
+    //     </div>
+    //     `
+    // } ).mount( '#root' );
+
+
+    Vue.createApp( {
+      data() {
+        return {
+          inputValue: '',
+          list: [],
+        };
+      },
+      methods: {
+        handle() {
+          this.list.push( this.inputValue );
+          this.inputValue = ''
+        }
+      },
+      template: `
+      <div>
+        <input v-model="inputValue"/>
+        <button v-on:click="handle">增加</button>
+      <ul>
+        <li v-for="(item,index) of list">{{item}} {{index}}</li>
+      </ul>
+     </div>
+        `
+    } ).mount( '#root' );
+  </script>
+</body>
+
+</html>
