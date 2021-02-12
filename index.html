@@ -53,7 +53,7 @@
     // } ).mount( '#root' );
 
 
-    Vue.createApp( {
+    const app = Vue.createApp( {
       data() {
         return {
           inputValue: '',
@@ -69,13 +69,18 @@
       template: `
       <div>
         <input v-model="inputValue"/>
-        <button v-on:click="handle">增加</button>
+        <button v-on:click="handle" v-bind:title="inputValue">增加{{inputValue}}</button>
       <ul>
-        <li v-for="(item,index) of list">{{item}} {{index}}</li>
+        <todo-item v-for="(item,index) of list" v-bind:content="item" v-bind:index="index"/>
       </ul>
-     </div>
+     </div>  
         `
-    } ).mount( '#root' );
+    } );
+    app.component( 'todo-item', {
+      props: [ 'content', 'index' ],
+      template: '<li>{{index}}--{{content}}</li>'
+    } );
+    app.mount( '#root' );
   </script>
 </body>
 
