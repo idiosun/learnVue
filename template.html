@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    const app = Vue.createApp( {
+      data() {
+        return {
+          message: 'hello world',
+          disabled: false,
+          show: false,
+          name: 'title',
+          event: 'click'
+        }
+      },
+      methods: {
+        handle( e ) {
+          // e.preventDefault();    
+          alert( 'click' );
+        }
+      },
+
+      //v-html通过html的方式展示变量
+      //template: '<div v-html="message"></div>'
+
+      //v-bind和字符串和data中的变量做绑定
+      //template:'<div v-bind:title="message">hello world</div>'
+      //template: '<div :title="message">hello world</div>'
+      //template: '<input v-bind:disabled="disabled"/>'
+
+      //只是用data中的变量一次
+      //template: '<div v-once>{{message}}</div>'
+      //template: '<div v-if="show">{{message}}</div>'
+      //template: '<div v-on:click="handle">{{message}}</div>'
+      //template: '<div @click="handle">{{message}}</div>'
+
+      //动态属性
+      // template: `
+      // <div 
+      // :[name]="message"
+      // @[event]="handle"
+      // >
+      //   hello world
+      //   </div>`
+
+      //阻止默认事件写在函数内
+      // template: `
+      // <form action="https://www.baidu.com" @click="handle">
+      // <button type="submit">提交</button>
+      // </form>
+      // `
+
+      //组织默认事件发生写在模板内，修饰符中语法
+      template: `
+      <form action="https://www.baidu.com" @click.prevent="handle">
+      <button type="submit">提交</button>
+      </form>
+      `
+
+    } )
+    const vm = app.mount( '#root' );
+  </script>
+</body>
+
+</html>
