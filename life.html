@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    //声明周期函数：在某一个时刻自动执行的函数
+    const app = Vue.createApp( {
+      data() {
+        return {
+          message: 'cdedfa'
+        }
+      },
+      //在实例生成之前会自动执行的函数
+      beforeCreate() {
+        console.log( 'beforeCreate' )
+      },
+      //在实例生成之后会自动执行的函数
+      created() {
+        console.log( 'created' )
+      },
+      //没有tenplate模板将根组件的innerHTML作为template之后自动执行
+      //有template模板变成render函数之后自动执行
+      beforeMount() {
+        console.log( 'beforeMount' )
+      },
+      //函数和数据结合，形成新的dom
+      //在组件内容被渲染到页面自动执行的函数
+      mounted() {
+        console.log( 'mounted' );
+      },
+      //当data中的数据发生变化时会自动执行的函数
+      beforeUpdate() {
+        console.log( 'beforeUpdate' );
+      },
+      //页面完成更新后自动执行的函数
+      updated() {
+        console.log( 'updated' );
+      },
+      //当vue实例app失效时执行
+      beforeUnmount() {
+        console.log( 'beforeUnmount' );
+      },
+      //dom完全脱离接管时执行
+      unmounted() {
+        console.log( 'unmounted' );
+      },
+      template: '<div>{{message}}</div>'
+    } );
+    const vm = app.mount( '#root' );
+  </script>
+</body>
+
+</html>
